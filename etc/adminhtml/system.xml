@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="power_toys">
+            <group id="pot_chat_gpt" translate="label" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Chat GPT</label>
+                <field id="is_enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="api_key" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Key</label>
+                    <comment>
+                        <![CDATA[To get an API Key, please register for OpenAI here:<br>
+                         <a href="https://platform.openai.com/" target="_blank">https://platform.openai.com/</a><br>
+                         and create your API Key here:<br>
+                         <a href="https://platform.openai.com/api-keys" target="_blank">https://platform.openai.com/api-keys</a>]]>
+                    </comment>
+                </field>
+                <field id="base_url" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Base Url</label>
+                    <comment>
+                        <![CDATA[Please find valid API endpoints here: <a href="https://platform.openai.com/docs/guides/text-generation" target="_blank">https://platform.openai.com/docs/guides/text-generation</a>]]>
+                    </comment>
+                </field>
+                <field id="model" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Model</label>
+                    <comment>
+                        <![CDATA[Please find available models here: <a href="https://platform.openai.com/docs/models/overview" target="_blank">https://platform.openai.com/docs/models/overview</a>]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

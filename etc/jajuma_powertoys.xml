@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<powertoys xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Jajuma_PowerToys:etc/jajuma_powertoys.xsd">
+    <quickaction id="pot_chat_gpt" class="Jajuma\PotChatGpt\Block\QuickAction">
+        <label translate="true">Chat GPT</label>
+        <arguments>
+            <argument name="enable">true</argument>
+            <argument name="template">Jajuma_PotChatGpt::quick_action.phtml</argument>
+            <argument name="widget_icon">Jajuma_PowerToys::svg/heroicons/outline/chat.svg</argument>
+            <argument name="magewire">Jajuma\PotChatGpt\Magewire\QuickAction</argument>
+            <argument name="preload">false</argument>
+            <argument name="sort_order">30</argument>
+        </arguments>
+    </quickaction>
+</powertoys>

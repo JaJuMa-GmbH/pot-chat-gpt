@@ -1,0 +1,112 @@
+<?php
+use Magento\Framework\Escaper;
+use Jajuma\PotChatGpt\Block\QuickAction;
+
+/** @var $block QuickAction */
+/** @var $escaper Escaper */
+
+$magewire = $block->getMagewire();
+?>
+
+<div id="jajuma_pot_chat_gpt" class="popup">
+    <div class="content" wire:ignore>
+        <div class="chat-box"></div>
+        <textarea rows="1" placeholder="Send a message" onkeydown="sendRequest();"></textarea>
+    </div>
+    <script>
+        function sendRequest() {
+            let event = this.event;
+            if (event.keyCode === 13) {
+                let element = event.target;
+                let value = element.value;
+                addRequestItem(value);
+                element.value = null;
+                event.preventDefault();
+                return false;
+            }
+        }
+
+        function addRequestItem(requestMessage) {
+            let chatBox = document.querySelector('.powerToysModalWrapper [data-action-id="pot_chat_gpt"] .content .chat-box');
+            let requestItem = '<div class="request-item"><span>' + requestMessage + '</span></div>';
+            chatBox.insertAdjacentHTML('beforeend', requestItem);
+            Magewire.emit('requestApi', {request_message: requestMessage});
+        }
+
+        window.addEventListener('finish-request-chat-gpt-api', event => {
+            let chatBox = document.querySelector('.powerToysModalWrapper [data-action-id="pot_chat_gpt"] .content .chat-box');
+            let message = event.detail.message;
+            let messageItem = '<div class="message-item"><span>' + message + '</span></div>';
+            chatBox.insertAdjacentHTML('beforeend', messageItem);
+        })
+    </script>
+
+    <style>
+        .powertoys-modal-pot_chat_gpt {
+            height: 80vh;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+        }
+
+        .powertoys-modal-pot_chat_gpt .powertoys-modal__container {
+            height: calc(100% - 50px);
+        }
+
+        .powertoys-modal-pot_chat_gpt .powertoys-modal__content,
+        #jajuma_pot_chat_gpt  {
+            height: 100%;
+        }
+
+        #jajuma_pot_chat_gpt .content {
+            width: 600px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #jajuma_pot_chat_gpt .content .chat-box {
+            min-height: 250px;
+            overflow-y: auto;
+            padding-right: 8px;
+            flex: 1;
+        }
+
+        #jajuma_pot_chat_gpt .content .chat-box .message-item,
+        #jajuma_pot_chat_gpt .content .chat-box .request-item {
+            background: rgb(239 239 239 / 20%);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.05);
+            border-top-left-radius: 0;
+            margin: 8px 0;
+            width: fit-content;
+        }
+
+        .jajumaLightMode ~ .powerToysModalWrapper #jajuma_pot_chat_gpt .content .chat-box .message-item,
+        .jajumaLightMode ~ .powerToysModalWrapper #jajuma_pot_chat_gpt .content .chat-box .request-item {
+            background: rgba(255, 255, 255, .67);
+            box-shadow: 1px 1px 5px 0px rgb(0 0 0 / 10%);
+        }
+
+        #jajuma_pot_chat_gpt .content .chat-box .request-item {
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-bottom-right-radius: 0;
+            margin-left: auto;
+        }
+
+        #jajuma_pot_chat_gpt .content textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 15px 0 0 0;
+            height: 80px;
+        }
+
+        @media (max-width: 1024px) {
+            #jajuma_pot_chat_gpt .content {
+                width: 100%;
+            }
+        }
+    </style>
+</div>

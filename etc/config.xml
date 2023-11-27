@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <power_toys>
+            <pot_chat_gpt>
+                <is_enabled>1</is_enabled>
+                <base_url>https://api.openai.com/v1/chat/completions</base_url>
+                <model>gpt-3.5-turbo</model>
+            </pot_chat_gpt>
+        </power_toys>
+    </default>
+</config>
