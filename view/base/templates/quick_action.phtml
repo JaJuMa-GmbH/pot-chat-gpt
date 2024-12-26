@@ -6,6 +6,8 @@ use Jajuma\PotChatGpt\Block\QuickAction;
 /** @var $escaper Escaper */
 
 $magewire = $block->getMagewire();
+$powerToysHelper = $this->helper(\Jajuma\PowerToys\Helper\Data::class);
+$nonce = $powerToysHelper->getNonce();
 ?>
 
 <div id="jajuma_pot_chat_gpt" class="popup">
@@ -13,7 +15,7 @@ $magewire = $block->getMagewire();
         <div class="chat-box"></div>
         <textarea rows="1" placeholder="Send a message" onkeydown="sendRequest();"></textarea>
     </div>
-    <script>
+    <script <?= $nonce ? 'nonce="' . $nonce . '"' : '' ?>>
         function sendRequest() {
             let event = this.event;
             if (event.keyCode === 13) {
