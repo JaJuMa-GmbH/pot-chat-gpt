@@ -3,7 +3,7 @@
     "description": "Chat GPT Power Toy for Magento 2 by JaJuMa",
         "type": "magento2-module",
         "license": "MIT",
-        "version": "1.0.1",
+        "version": "1.0.2",
     "authors": [
         {
             "email": "info@jajuma.de",
@@ -14,7 +14,7 @@
     "require": {
         "magewirephp/magewire": "^1.10",
         "magewirephp/magewire-requirejs": "^1.1",
-        "jajuma/power-toys": "^1.0"
+        "jajuma/power-toys": "^1.0.3"
     },
     "autoload": {
         "psr-4": {
